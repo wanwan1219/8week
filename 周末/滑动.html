@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1000%;
+            height: 300px;
+        }
+
+        .box ul li {
+            width: 10%;
+            height: 300px;
+            box-sizing: border-box;
+            border: 3px solid red;
+            font: 900 36px/300px "MicroSoft YaHei";
+            text-align: center;
+            background: black;
+            float: left;
+            color: #fff;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul style="left: 0">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+</div>
+</body>
+<script>
+    /*先获取他的宽度  box  ul  宽*/
+    function cla(a) {
+        return document.getElementsByClassName(a);
+    }
+
+    var box = cla("box")[0],
+            ul = box.children[0],
+            lis = ul.children,
+            ulw = ul.offsetWidth,
+            boxw = box.offsetWidth,
+            cha = boxw - ulw,
+            start = 0,
+            move = 0,
+            left= 0,
+            wid= 0,
+            end = 0;
+    //    console.log(cha);
+
+    box.addEventListener("touchstart", function (e) {
+        start = e.changedTouches[0].pageX;
+        left=ul.offsetLeft;
+        /*每次开始的时候都要获取当前的left值*/
+//        console.log(start);
+    });
+    box.addEventListener("touchmove", function (e) {
+        move = e.changedTouches[0].pageX;
+//        left=ul.style.left;
+//        console.log(left);
+        ul.style.left =left+move - start + "px";
+
+    });
+    box.addEventListener("touchend",function(){
+        wid=parseInt(ulw)-parseInt(boxw);
+        if( parseInt(ul.style.left)>0){
+            left=0;
+            ul.style.left =left+ "px";
+        }
+        if( parseInt(ul.style.left)<-wid){
+            left=-wid;
+            ul.style.left =left+ "px";
+        }
+
+    })
+
+
+</script>
+</html>

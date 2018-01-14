@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--设置内容宽为屏幕宽 禁止用户缩放屏幕 设置初始和最大最小缩放比都是1.0-->
+    <meta name="viewport"
+          content="width=640, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--移动端页面设置视口宽度等于定宽640 并禁止缩放 常用于微信页面-->
+    <meta name="format-detection" content="telephone=no">
+    <!--禁止将页面中的数字识别为电话号码-->
+    <meta name="format-detection" content="email=no">
+    <!--忽略Android平台中对邮箱地址的识别-->
+    <meta name="app-mobile-web-app-capable" content="yes">
+    <!--当网站添加到主屏幕快速启动方式，可隐藏其地址栏，仅针对ios的Safari-->
+    <!--ios7.0版本以后Safari上已经看不到效果-->
+    <meta name="app-mobile-web-app-status-bar-style" content="black">
+    <!--将网站添加到主屏幕快速启动方式，仅针对ios的Safari顶端的状态条的样式-->
+    <!--可选default，black，black-translucent-->
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        @media (max-width: 1200px) {
+            body{
+                font-size: 16px;
+            }
+        }
+        @media (max-width: 640px) and (min-width: 500px){
+            body{
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 500px) and (min-width: 320px){
+            body{
+                font-size: 12px;
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+                -webkit-appearance: none;
+                -webkit-text-size-adjust: 100%!important;
+                /*ios禁止调整字体大小*/
+                font-family: Helvetica;
+                /*移动端没有微软雅黑 定义字体*/
+
+            }
+            input::-webkit-input-placeholder{
+                color: #b3b3b3;
+            }
+            input::-webkit-input-speech-button{
+                display: none;
+                /*安卓去掉语音输入按钮*/
+            }
+            input:focus::-webkit-input-placeholder{
+                color: #0a56bb;
+            }
+            a,button,input{
+                -webkit-tap-highlight-color: rgba();
+            }
+
+        }
+        li{
+            list-style: none;
+        }
+        body{
+            margin:0 auto;
+            max-width: 640px;
+            min-width: 320px;
+            /*font-size: 12px;*/
+        }
+        .box{
+            margin:0 auto;
+            width: 100%;
+            /*background: #f3f3f3;*/
+        }
+        .box ul{
+            /*height: 160px;*/
+            padding: 2px auto;
+        }
+        .box ul li{
+            width: 20%;
+            height: 50%;
+            float: left;
+            box-sizing: border-box;
+        }
+        .box ul li span{
+            display: block;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            margin:8px 0 ;
+            /*font-size: 12px;*/
+            text-align: center;
+        }
+        .box ul li img{
+            width: 40%;
+        }
+        .box ul li i{
+            /*font-size: 12px;*/
+            font-style: normal;
+            display: block;
+        }
+        .box2{
+            background: url("img/bg.jpg") no-repeat left;
+            width: 100%;
+        }
+        .box2 .top{
+            width: 100%;
+            padding: 3% 0;
+        }
+        .box2 .top div{
+            float: left;
+            width: 15%;
+        }
+        .box2 .top div img{
+            margin-left: 3%;
+            width: 100%;
+        }
+        .box2 .top>i{
+            float: left;
+            margin-left: 1%;
+        }
+        .box2 .top span{
+           margin-left: 1%;
+        }
+        .box2 .top p{
+            margin-right: 3%;
+            float: right;
+        }
+        .pic_wrap{
+            padding:2% 0;
+            text-align: center;
+        }
+        .pic_wrap .pic1{
+            background: white;
+            display: inline-block;
+            width: 20%;
+            /*height: 65%;*/
+            margin-left: 55%;
+            margin-right: 1%;
+            padding-bottom: 2%;
+        }
+        .pic_wrap .pic2{
+            background: white;
+            display: inline-block;
+            width: 20%;
+            height: 65%;
+            padding-bottom: 2%;
+        }
+        .pic_wrap .pic2 img,.pic_wrap .pic1 img{
+            width: 100%;
+            padding: 8% 0;
+        }
+        .pic_wrap .pic2 p,.pic_wrap .pic1 p{
+            padding-top: 1%;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+        }
+        .pic_wrap .pic2 span,.pic_wrap .pic1 span{
+            /*display: block;*/
+            /*width: 30%;*/
+            /*margin: 0 auto;*/
+            background: red;
+            color: white;
+            padding: 2% 10%;
+            border-radius: 20px;
+        }
+        .banner{
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner ul{
+            width: 1000%;
+            position: absolute;
+            left: -100%;
+            transition:left .5s linear 0s;
+        }
+        .banner ul li{
+            width: 10%;
+            float: left;
+        }
+        .banner ul li img{
+            width: 100%;
+        }
+        .banner ol{
+            position: absolute;
+            left: 50%;
+            margin-left: -80px;
+            bottom: 2%;
+        }
+        .banner ol li{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            float: left;
+            border: 1px solid white;
+            margin-right: 10px;
+        }
+        .nav{
+            background: rgba(0,0,0,.3);
+            position: fixed;
+            z-index: 999;
+            width: 100%;
+            top:0;
+            max-width: 640px;
+            min-width: 320px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .nav input{
+            width: 80%;
+            border-radius: 20px;
+            padding: 5px 5px 5px 50px;
+            outline: none;
+        }
+        .nav span{
+           color: white;
+            padding-left: 3%;
+        }
+        .nav i{
+            display: inline-block;
+            position: absolute;
+            top: 18px;
+            left: 20px;
+            width: 18px;
+            height: 13px;
+            background: url("img/jingling.png") no-repeat 0 0;
+            /*background-size: 180px 165px;*/
+            background-size: 1000% 1300%;
+            /*18/40=x/400
+            13/30=y/400
+            */
+        }
+        .nav em{
+            position: absolute;
+            left: 47px ;
+            top: 18px;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: url("img/jingling.png") no-repeat -68px 0;
+            background-size:1380% 1380%;
+        }
+        .col{
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<!--移动端开发
+要注意：兼容 需要考虑 但没有pc端兼容考虑多
+都是webkit内核 所以只要兼容webkit就可以
+移动端没有100%兼容所有浏览器的项目 只要兼容80%的主流浏览器就可以
+移动端没有版心 都是全屏的
+移动端的网站也叫m站 输入网址就是把www换成m
+移动端的设计稿一般是按照iPhone6设计的 最大宽度640px 最小宽320px
+   最大宽度等于设计搞的宽度 一般是640px
+适配：
+分为两种：自适应，响应式
+自适应：页面百分百显示在当前窗口下 各元素占屏幕的百分比是不变的。用百分比布局 加最大最小宽限制，避免失真。
+响应式：
+设置适口：meta：vp＋table
+
+-->
+<div class="nav">
+    <i></i>
+    <em></em>
+    <input type="search" placeholder="输入你要搜索的内容~">
+    <span>登陆</span>
+    <a href="tel:10086">打电话给10086</a>
+    <a href="sms:10086">发短信给10086</a>
+</div>
+<div class="banner">
+    <ul>
+        <li><img src="img/ban8.jpg" alt=""></li>
+        <li><img src="img/ban1.jpg" alt=""></li>
+        <li><img src="img/ban2.jpg" alt=""></li>
+        <li><img src="img/ban3.jpg" alt=""></li>
+        <li><img src="img/ban4.jpg" alt=""></li>
+        <li><img src="img/ban5.jpg" alt=""></li>
+        <li><img src="img/ban6.jpg" alt=""></li>
+        <li><img src="img/ban7.jpg" alt=""></li>
+        <li><img src="img/ban8.jpg" alt=""></li>
+        <li><img src="img/ban1.jpg" alt=""></li>
+    </ul>
+    <ol>
+        <li class="col"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+<div class="box">
+    <ul>
+        <li><span><img src="img/sn1.png" alt=""><i>分类</i></span></li>
+        <li><span><img src="img/sn2.png" alt=""><i>大聚会</i></span></li>
+        <li><span><img src="img/sn3.png" alt=""><i>苏宁超市</i></span></li>
+        <li><span><img src="img/sn4.png" alt=""><i>红孩子母婴</i></span></li>
+        <li><span><img src="img/sn5.webp" alt=""><i>服装城</i></span></li>
+        <li><span><img src="img/sn6.png" alt=""><i>薄款手机</i></span></li>
+        <li><span><img src="img/sn7.png" alt=""><i>赚钱</i></span></li>
+        <li><span><img src="img/sn8.png" alt=""><i>领云钻</i></span></li>
+        <li><span><img src="img/sn9.png" alt=""><i>身边苏宁</i></span></li>
+        <li><span><img src="img/sn10.png" alt=""><i>生活家电</i></span></li>
+        <div style="clear: both"></div>
+    </ul>
+</div>
+<div class="box2">
+    <div class="top">
+        <div>
+            <img src="img/logo.png" alt="">
+        </div>
+        <i>·</i>
+        <span>1180元换新礼包</span>
+        <p>查看更多 <i>&lt;</i></p>
+    </div>
+    <div class="pic_wrap">
+        <div class="pic1">
+            <p>耐克</p>
+            <img src="img/12.webp" alt="">
+            <span>6.6折</span>
+        </div>
+        <div class="pic2">
+            <p>李宁</p>
+            <img src="img/mk.webp" alt="">
+            <span>6.6折</span>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    window.onload=function(){
+        function cla(a){
+            return document.getElementsByClassName(a)
+        }
+        var ban=cla("banner")[0];
+        var img=ban.children[0].children[0].children[0];
+        var hh=img.offsetHeight;
+        var ww=img.offsetWidth;
+        var ul=ban.children[0];
+        var len=ul.children.length;
+        var olLis=ban.children[1].children;
+        console.log(olLis);
+        /*浮动了不占位 所以给ban加一个获取的img的高度*/
+        ban.style.height=hh+"px";
+        ban.children[0].style.height=hh+"px";
+
+
+        //touch:分为3部分 touchstart touchmove touchend
+//        因为click有延时 所以不用click事件 用touchstart
+        //绑定事件的两种方式 1.on 2.事件监听addeventlistener
+        var start= 0,
+                end= 0,
+                move= 0,
+                index= 1,
+                k= 0,
+                step= 0,
+                fa=true;
+        ban.addEventListener("touchstart",function(e){
+            /*浏览器把相对于页面的距离放在了形参中*/
+//            console.log(e);
+//            console.log(e.touches[0].pageX);
+            /*获取手指按下的位置距离屏幕的left值*/
+            start=e.touches[0].pageX;
+            clearInterval(timer);
+        });
+        ban.addEventListener("touchend",function(e){
+//            console.log(e.changedTouches[0].pageX);
+            /*获取手指离开时的位置距离屏幕的left值*/
+            end=e.changedTouches[0].pageX;
+            var cha=end-start;
+            /*离开的减去按下时的 来判断是在向左划还是向右划*/
+//            console.log(cha);
+            if(cha>1/3*ww&&fa==true){
+                /*如果是>0就是往右滑动 想看左面的图*/
+                /*加节流阀*/
+                fa=false;
+                left();
+            }else if(cha<-1/3*ww&&fa==true){
+                /*如果是<0就是往左滑动 想看右面的图*/
+                fa=false;
+                right();
+            }else{
+//                移动的距离不到1/3的话就不移动
+                ul.style.transition="left .5s linear 0s";
+                ul.style.left=-index*ww+"px";
+            }
+            move=0;
+            step=0;
+            timer=setInterval(right,1500);
+        });
+        ban.addEventListener("touchmove",function(e){
+            /*move是移动的位置距离屏幕的left值*/
+            move=e.touches[0].pageX;
+            step=move-start;
+            /*就在滑动时会改变left值 就是step的值*/
+            ul.style.left=-index*ww+step+"px";
+            /*要加上原有的-index*ww 否则会回到第一张*/
+        });
+        function left(){
+            index--;
+            ul.style.transition="left .5s linear 0s";
+            ul.style.left=-index*ww+"px";
+            k--;
+            if(k<0){
+                k=len-3;
+            }
+            col();
+        }
+        function right(){
+            index++;
+            /*因为回调函数里去掉了动画 所以在执行之前在加上动画 然后再改变left值*/
+            ul.style.transition="left .5s linear 0s";
+            ul.style.left=-index*ww+"px";
+            k++;
+            if(k>len-3){
+                k=0
+            }
+            col();
+        }
+        function col(){
+            /*定义小圆点添加类*/
+            for(var i=0;i<len-2;i++){
+                /*js只能操作一个 不能操作一组数 要加一个循环移除类*/
+                olLis[i].className="";
+            }
+            olLis[k].className="col";
+        }
+        ul.addEventListener("transitionend",function(){
+//            添加回调函数 让一个移动完了再让下一个移动 就不会有白色的了 加个节流阀
+            /*上面的动画执行完了就会触发 进入判断 （每次都会进入判断）
+            如果符合 就去掉动画 不符合 就继续执行上面的left 和 right函数*/
+            if(index>=len-1){
+                index=1;
+            }
+            if(index<=0){
+                index=len-2;
+            }
+            /*执行到最后一张和第一张在滑动的时候立刻执行 就要去掉动画*/
+            ul.style.transition="none";
+            ul.style.left=-index*ww+"px";
+            fa=true;
+        });
+        var timer=setInterval(right,1500);
+    }
+</script>
+</html>

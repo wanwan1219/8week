@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        body{
+            min-width: 320px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .box{
+            width: 3rem;
+            height: 2rem;
+            font-size: .3rem;
+            background: red;
+        }
+    </style>
+</head>
+<!--<script>-->
+    <!--/*注意script获取rem时要写在body前面 不然还没获取rem时就已经执行完body了 */-->
+    <!--rem();-->
+    <!--window.onResize=function(){-->
+        <!--rem()-->
+    <!--};-->
+<!--//    window.onResize=rem; 和上面的一样-->
+    <!--function rem(){-->
+        <!--/*获取html的宽度*/-->
+        <!--var ww=document.documentElement.clientWidth;-->
+        <!--console.log(ww);-->
+        <!--if(ww>640){-->
+            <!--ww=640;-->
+        <!--}-->
+        <!--document.documentElement.style.fontSize=ww/6.4+"px";-->
+        <!--/*设计稿是多大就在多大的屏幕大小下开发  改变了设计稿的宽就改变数值 640和6.4*/-->
+    <!--}-->
+<!--</script>-->
+<script>
+    function hengshuping(){
+        if(window.orientation==180||window.orientation==0){
+            alert("竖屏状态")
+        }
+        if(window.orientation==90||window.orientation==-90){
+            alert("横屏状态")
+        }
+    }
+    window.addEventListener("onorientationchange"in window?"orientationchange":"resize",hengshuping);
+//    var a=1;
+//    (function(){
+//        if(a>0){
+//            return;
+////            return直接跳出这个方法
+//        }
+//        if(a>-1){
+//            alert(1);
+//        }
+//    })();
+    (function(num){
+        var resizeEvt="orientationchanged"in window?"orientationchange":"resize",
+        /*in 的用法？判断元素是否存在于 对象/数组中 返回false 和 true*/
+        //成立返回条件1(:前面的),不成立返回条件2(:后面的)
+                //orientationchanged监听手机是不是横竖屏
+                doc=document.documentElement,
+                recalc=function(){
+                    var clientWidth=doc.clientWidth;
+                    if(!clientWidth) return;
+                    /*!取反 获取到了就是真的 !取反后 就是假的 就不执行return*/
+                    /*0 false null undefined*/
+                    if(clientWidth>num){
+                        clientWidth=num
+                    }
+                    doc.style.fontSize=100*(clientWidth/num)+"px";
+                };
+        if(!document.addEventListener) return;
+        window.addEventListener(resizeEvt,recalc);
+        //返回条件1的时候  即 触发了横竖屏事件了 执行上面的语句 执行recala重新获取html的宽度并给fontSize赋值
+        document.addEventListener("DOMContentLoaded",recalc);
+        //返回条件2的时候 即 触发了resize事件了 执行上面的语句
+    })(640);
+    /*把参数放在后面的括号里*/
+</script>
+<body>
+<!--rem：单位 跟着屏幕的大小来改变 屏幕大的时候就大 小的时候就小
+相对单位 取决于html字体的大小 需要动态的设置html的字体的大小，
+屏幕的大小/固定值 来设置字体的大小
+-->
+dom文档加载的步骤:
+1.解析html结构
+2.加载外部脚本和样式表文件
+3.解析并执行脚本代码
+4.dom树构建完成   <!--DOMContentLoaded-->
+5.加载图片视频音频等文件
+6.页面加载完毕  <!--load-->
+
+
+in 的用法？
+判断元素是否存在于 对象/数组中 返回false 和 true
+
+
+！的用法？取反 非 表示否定
+！！的用法？ 表示双重否定
+
+
+$(function(){})，$(document).ready(function(){})和window.onload的区别？
+$(function(){})是$(document).ready(function(){})的简写
+window.onload只能使用一次，使用多次会覆盖前面的
+$(function(){})可以使用多次 并且不会发生覆盖 是在dom树构建完成后执行
+window.onload 是等图片等外部资源加载完成后才会执行
+<div class="box">
+啦啦啦~
+</div>
+</body>
+<script>
+//    $(function(){}),$(document).ready(function(){})和window.onloady有什么区别
+</script>
+</html>

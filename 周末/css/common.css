@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+img{
+    border: 0;
+    vertical-align: middle;
+}
+a{
+    text-decoration: none;
+}
+.clear:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.clear{
+    zoom:1;
+}
+input{
+    border: 0;
+}

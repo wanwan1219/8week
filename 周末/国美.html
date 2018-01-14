@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<script>
+    (function(){
+        //rem是以html的fontSize的大小为单位的
+        //em是以自身的fontSize大小为单位的
+        rem();
+        window.onResize=function(){
+            rem();
+        };
+        function rem(){
+            var ww=document.documentElement.clientWidth;
+            if(ww>640){
+                ww=640
+            }
+            document.documentElement.style.fontSize=ww/6.4+"px";
+        }
+    })();
+</script>
+<body>
+<div class="nav">
+    <i class="logo">
+        <img src="img/grass_logo.png" alt="">
+    </i>
+    <input type="search" placeholder="海尔品牌日">
+    <em class="search">
+        <img src="img/search.png" alt="">
+    </em>
+    <i class="shop">
+        <img src="img/grass_cart.png" alt="">
+    </i>
+    <span>登陆</span>
+</div>
+<div class="banner">
+    <ul>
+        <li><img src="img/ban8.jpg" alt=""></li>
+        <li><img src="img/ban1.jpg" alt=""></li>
+        <li><img src="img/ban2.jpg" alt=""></li>
+        <li><img src="img/ban3.jpg" alt=""></li>
+        <li><img src="img/ban4.jpg" alt=""></li>
+        <li><img src="img/ban5.jpg" alt=""></li>
+        <li><img src="img/ban6.jpg" alt=""></li>
+        <li><img src="img/ban7.jpg" alt=""></li>
+        <li><img src="img/ban8.jpg" alt=""></li>
+        <li><img src="img/ban1.jpg" alt=""></li>
+    </ul>
+</div>
+<div class="list">
+    <img src="img/liban.jpg" alt="">
+    <ul>
+        <li><img src="img/li1.png" alt=""><p>分类</p></li>
+        <li><img src="img/li2.png" alt=""><p>充值中心</p></li>
+        <li><img src="img/li3.png" alt=""><p>手机数码</p></li>
+        <li><img src="img/li4.png" alt=""><p>领券中心</p></li>
+        <li><img src="img/li5.png" alt=""><p>国美电器</p></li>
+        <li><img src="img/li6.png" alt=""><p>金融理财</p></li>
+        <li><img src="img/li7.png" alt=""><p>国美超市</p></li>
+        <li><img src="img/li8.png" alt=""><p>家居家装</p></li>
+        <li><img src="img/li9.png" alt=""><p>管家服务</p></li>
+        <li><img src="img/li10.png" alt=""><p>我的</p></li>
+    </ul>
+    <img src="img/libanx.jpg" alt="">
+</div>
+<div class="content clear">
+    <img src="img/gmtt.png" alt="">
+    <p>
+        <i>家电家装节</i>
+        <span>爆款低至7.1折，领券最高立减400</span>
+    </p>
+</div>
+<div class="grab">
+    <div class="grab_top clear">
+        <h3>晚12点场</h3>
+        <div class="gm_timer">
+            <input type="text" id="time_h" value=""> :
+            <input type="text" id="time_m" value=""> :
+            <input type="text" id="time_s" value="">
+        </div>
+    </div>
+    <div class="grab_bottom">
+        <ul class="clear" style="left: 0">
+            <li><img src="img/121.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/122.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/123.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/124.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/125.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/126.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/127.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/128.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/129.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/1210.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/1211.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/1212.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/1214.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/1215.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+            <li><img src="img/1216.jpg" alt=""><p>￥300</p><span>仅剩40件</span></li>
+        </ul>
+    </div>
+</div>
+</body>
+<script src="js/index.js"></script>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        body{
+            max-width: 640px;
+            min-width: 320px;
+            margin: 0 auto;
+        }
+        .banner{
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .banner ul{
+            position: absolute;
+            width: 1000%;
+            left:-100%;
+        }
+        .banner ul li{
+            float: left;
+            width: 10%;
+        }
+        .banner ul li img{
+            width: 100%;
+        }
+        .banner ol{
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            margin-left: -80px;
+        }
+        .banner ol li{
+            float: left;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1px solid white;
+            margin-right: 10px;
+        }
+        .banner ol .col{
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<div class="banner">
+    <ul>
+        <li><img src="img/ban8.webp" alt=""></li>
+        <li><img src="img/ban1.jpg" alt=""></li>
+        <li><img src="img/ban2.webp" alt=""></li>
+        <li><img src="img/ban3.webp" alt=""></li>
+        <li><img src="img/ban4.webp" alt=""></li>
+        <li><img src="img/ban5.webp" alt=""></li>
+        <li><img src="img/ban6.webp" alt=""></li>
+        <li><img src="img/ban7.webp" alt=""></li>
+        <li><img src="img/ban8.webp" alt=""></li>
+        <li><img src="img/ban1.jpg" alt=""></li>
+    </ul>
+    <ol>
+        <li class="col"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+</body>
+<script>
+    window.onload=function(){
+        function cla(e){
+            return document.getElementsByClassName(e)
+        }
+        var ban=cla("banner")[0],
+                ul=ban.children[0],
+                ullis=ul.children,
+                len=ullis.length,
+                ww=ullis[0].children[0].offsetWidth,
+                hh=ullis[0].children[0].offsetHeight,
+                ollis=ban.children[1].children,
+                index= 1,start= 0,end= 0,move= 0,cha= 0,step= 0,fa=true,
+                timer=setInterval(next,1500);
+        ban.style.height=hh+"px";
+        ban.addEventListener("touchstart",function(e){
+            start= e.touches[0].pageX;
+            clearInterval(timer);
+        });
+        ban.addEventListener("touchend",function(e){
+            end= e.changedTouches[0].pageX;
+            cha=end-start;
+            if(cha>1/3*ww&&fa==true){
+                fa=false;
+                prev()
+            }else if(cha<-1/3*ww&&fa==true){
+                fa=false;
+                next()
+            }else{
+                ul.style.transition="left .5s linear 0s";
+                ul.style.left=-index*ww+"px";
+            }
+            timer=setInterval(next,1500)
+        });
+        ban.addEventListener("touchmove",function(e){
+           move= e.touches[0].pageX;
+            step=move-start;
+            ul.style.transition="left .5s linear 0s";
+            ul.style.left=-index*ww+step+"px";
+        });
+        function prev(){
+           index--;
+            ul.style.transition="left .5s linear 0s";
+            ul.style.left=-index*ww+"px";
+        }
+        function next(){
+            index++;
+            ul.style.transition="left .5s linear 0s";
+            ul.style.left=-index*ww+"px";
+        }
+        ul.addEventListener("transitionend",function(){
+            if(index>=len-1){
+                index=1
+            }
+            if(index<=1){
+                index=len-1
+            }
+            ul.style.transition="none";
+            ul.style.left=-index*ww+"px";
+            fa=true;
+        })
+    }
+</script>
+</html>
